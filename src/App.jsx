@@ -9,8 +9,8 @@ const App = () => {
 
   const fetchTasks = async () => {
     try {
-      const response = await axios.get("https://todo-app-96yo.onrender.com/tasks");
-      console.log("API Response:", response.data); 
+      const response = await axios.get("https://todo-app-96yo.onrender.com/api/tasks");
+      console.log("API Response:", response.data); // Debugging
       setTasks(response.data);
     } catch (error) {
       console.error("Error fetching tasks:", error);
