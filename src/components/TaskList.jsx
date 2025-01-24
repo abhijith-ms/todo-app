@@ -11,6 +11,8 @@ const TaskList = ({ tasks, fetchTasks }) => {
     }
   };
 
+  const taskList = Array.isArray(tasks) ? tasks : [];
+
   return (
     <table>
       <thead>
@@ -24,7 +26,7 @@ const TaskList = ({ tasks, fetchTasks }) => {
         </tr>
       </thead>
       <tbody>
-        {tasks.map((task) => (
+        {taskList.map((task) => (
           <tr key={task.id}>
             <td>{task.title}</td>
             <td>{task.description}</td>
