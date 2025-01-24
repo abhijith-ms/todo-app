@@ -4,7 +4,7 @@ import axios from "axios";
 const TaskList = ({ tasks, fetchTasks }) => {
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://todo-app-96yo.onrender.com/tasks/${id}`);
+      await axios.delete(`https://todo-app-96yo.onrender.com/api/tasks/${id}`);
       fetchTasks();
     } catch (error) {
       console.error("Error deleting task:", error);

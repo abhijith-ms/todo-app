@@ -13,7 +13,7 @@ const TaskForm = ({ fetchTasks }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://todo-app-96yo.onrender.com/tasks", task);
+      await axios.post("https://todo-app-96yo.onrender.com/api/tasks", task);
       fetchTasks();
       setTask({ title: "", description: "", deadline: "", priority: "low", completed: false });
     } catch (error) {
