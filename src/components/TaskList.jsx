@@ -5,7 +5,7 @@ const TaskList = ({ tasks, fetchTasks }) => {
     const handleDelete = async (id) => {
         try {
             console.log("Deleting task with ID:", id);
-            await axios.delete(`http://localhost:3001/tasks/${id}`);
+            await axios.delete(`https://todo-app-backend-jl52.onrender.com/${id}`);
             fetchTasks(); 
         } catch (error) {
             console.error("Error deleting task:", error);
