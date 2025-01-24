@@ -1,18 +1,29 @@
 import path from "path";
 import express from "express";
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
-const jsonServer = require("json-server");
 
 const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(express.static(path.join(process.cwd(), "dist")));
+app.use(express.json());
 
-const router = jsonServer.router("db.json");
-const middlewares = jsonServer.defaults();
-app.use("/api", middlewares);
-app.use("/api", router);
+let tasks = [];
+
+app.get("/api/tasks", (req, res) => {
+  res.json(tasks);
+});
+
+app.post("/api/tasks", (req, res) => {
+  const newTask = { id: Date.now(), ...req.body };
+  tasks.push(newTask);
+  res.status(201).json(newTask);
+});
+
+app.delete("/api/tasks/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  tasks = tasks.filter((task) => task.id !== id);
+  res.status(200).json({ message: "Task deleted successfully" });
+});
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(process.cwd(), "dist", "index.html"));
